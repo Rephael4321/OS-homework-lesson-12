@@ -1,5 +1,6 @@
 import os
 import multiprocessing
+import time
 
 
 def main(num):
@@ -9,6 +10,7 @@ def main(num):
     print()
     process = multiprocessing.Process(target=count, args=(num, ))
     process.start()
+    print("Stater but not joined")
     process.join()
 
 
@@ -19,6 +21,7 @@ def count(num):
     print()
     for x in range(num):
         print(x)
+        time.sleep(1)
 
 
 if __name__ == "__main__":
