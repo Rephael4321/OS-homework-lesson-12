@@ -17,18 +17,18 @@ def main():
         'https://jsonplaceholder.typicode.com/todos',
         'https://jsonplaceholder.typicode.com/users'
     ]
-    processes = []
+    threads = []
     time_to_download = []
     for url in urls:
-        process = threading.Thread(target=downloader, args=(url, time_to_download,  ))
-        process.start()
-        processes.append(process)
+        thread = threading.Thread(target=downloader, args=(url, time_to_download,  ))
+        thread.start()
+        threads.append(thread)
 
-    for process in processes:
-        process.join()
+    for thread in threads:
+        thread.join()
     
     for item in time_to_download:
-        print(f"{item[0][37:]} took {round(item[1], 4)} seconds to download")
+        print(f"{item[0].split("/")[-1]} took {round(item[1], 4)} seconds to download")
 
 
 if __name__ == "__main__":
